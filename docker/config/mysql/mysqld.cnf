@@ -1,0 +1,58 @@
+[client]
+default-character-set = utf8mb4
+[mysql]
+default-character-set = utf8mb4
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+log-error      = /var/log/mysql/error.log
+# By default we only accept connections from localhost
+#bind-address   = 127.0.0.1
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+sql_mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+log_timestamps=SYSTEM
+
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+init_connect='SET NAMES utf8mb4'
+
+# 优化配置
+wait_timeout=10
+back_log=600
+key_buffer_size = 2048M
+read_buffer_size = 100M
+max_allowed_packet      = 1000M
+thread_stack            = 192K
+thread_cache_size       = 4
+myisam-recover-options  = BACKUP
+max_connections        = 4000
+max_user_connections = 0
+max_connect_errors = 65535
+open_files_limit = 10240
+
+# 日志
+general_log             = 0
+general_log_file        = /var/log/mysql/mysql.log
+expire_logs_days = 7
+
+# 慢查询
+slow_query_log = on
+slow_query_log_file     = /var/log/mysql/slow.log
+long_query_time = 2
+
+# 主从配置
+#server-id = 1
+#binlog-ignore-db = mysql
+#log-bin = mysql-bin
+#binlog_cache_size = 10M
+#max_binlog_cache_size = 10M
+#max_binlog_size   = 100M
+#binlog_format = mixed
+#expire_logs_days = 3
+#slave_skip_errors = 1062
+
+skip_innodb_doublewrite
+innodb_flush_log_at_trx_commit = 0
