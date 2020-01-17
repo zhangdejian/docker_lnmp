@@ -30,7 +30,7 @@ RUN pecl install redis-$PHPREDIS_VERSION \
      && php composer-setup.php \
      && php -r "unlink('composer-setup.php');" \
      && mv composer.phar /usr/local/bin/composer \
-     && composer config -g repo.packagist composer https://packagist.laravel-china.org
+     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 RUN apt-get install -y git
 
